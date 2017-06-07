@@ -14,11 +14,11 @@ function outer() {
 closure over the name variable. Invoke outer saving the return value into
 another variable called 'inner'. */
 
-// Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
-//Code Here
+inner();
 
 
 
@@ -45,8 +45,8 @@ function callFriend(name) {
 /* Above you're given a callFriend function that returns the dial function.
 Create a callJake function that when invoked with '435-555-9248' returns 'Calling Jake at 435-555-9248'
 in your console. */
+var callJake = callFriend("Jake");
 
-  //Code Here
 
 
 
@@ -64,14 +64,19 @@ in your console. */
 /* Write a function called makeCounter that makes the following code work
 properly. */
 
-//Code Here
+function makeCounter() {
+  var counter = 0;
+  return function() {
+    return counter += 1;
+  }
+}
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+   var count = makeCounter();
+   count(); // 1
+   count(); // 2
+   count(); // 3
+   count(); // 4
 
 
 
@@ -97,11 +102,14 @@ http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-examp
 */
 
 function counterFactory(value) {
-
-  // Code here.
-
-
+  var counter = value;
   return {
+    inc() {
+      return counter+= 1;
+    },
+    dec() {
+      return counter-= 1;
+    }
   }
 }
 
@@ -134,10 +142,13 @@ function motivation(firstname, lastname) {
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
   // code message function here.
+  function message() {
+    return welcomeText + firstname + " " + lastname + ".";
+  }
 
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
+  return message();
 
 }
 
@@ -176,9 +187,14 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod() {
+      return privateMethod();
+    }
   };
 
 })();
+
+module.publicMethod();
 
 
 
@@ -195,7 +211,9 @@ var secondLevelFriends = ["Anne", "Harry", "Quinton"];
 var allUsers = ["Tom", "Dick", "Harry", "Anne", "Quinton", "Katie", "Mary"];
 
 function findPotentialFriends(existingFriends) {
-
+  return function() {
+    
+  }
 }
 
 var isNotAFriend = findPotentialFriends( friends );
